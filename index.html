@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+            box-sizing: border-box;
+        }
+        html,body{
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            /* font-size: 34px; */
+            width: 100vw;
+            height: 100vh;
+            background-color: #3f3f3f;
+            color: #fff;
+        }
+        .notecontainer{
+            background-color: rgb(48, 47, 46);
+            height: 100vh;
+            width: 80%;
+            margin-left: 10%;
+            border-radius: 25px;
+            box-shadow: 8px 4px 4px #614635;
+            position: relative;
+        }
+        h1{
+            font-variant: small-caps;
+            font-size: 34px;
+            margin-bottom: 20px;
+            text-decoration: underline;
+            text-align: center;
+        }
+        input{
+            width: 50%;
+            height: 80px;
+            border: 2px solid #fff;
+            border-radius: 25px;
+            border-top-right-radius: 0px;
+            border-bottom-right-radius: 0px;
+            margin-left: 20%;
+            margin-top: 30px;
+            background-color: transparent;
+            color: #fff;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        ::placeholder{
+            text-align: center;
+            font-size: 22px;
+            color: #fff;
+        }
+        button{
+            width: 10%;
+            height: 80px;
+            margin-left: -2px;
+            border: 2px solid #000;
+            border-radius: 25px;
+            border-top-left-radius: 0px;
+            border-bottom-left-radius: 0px;
+            font-size: 22px;
+            background-color: rgb(211, 132, 21);
+            border: 4px solid rgb(211, 132, 21);
+            color: #fff;
+            font-weight: 900;
+
+            position: absolute;
+            top: 90px;
+        }
+        #noteslist{
+            margin-top: 40px;
+        }
+        .note{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 5px 0;
+            padding: 10px;
+            border: 2px solid yellow;
+            
+            font-family:cursive;
+        }
+        .remove{
+            background-color: #ff4d4d;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 10px;
+            margin: 0 20px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .remove:hover{
+            background-color: #ff1a1a;
+        }
+
+       
+    </style>
+</head>
+<body>
+    <div class="notecontainer">
+        <h1>Todo-List</h1>
+        
+        <input type="text" id="noteInput" placeholder="Write Your Task Here...">
+        
+        <button id="addNoteBtn">Add </button>
+        
+        <div id="noteslist">
+            <!-- <div class="note">
+                <span class="remove">Remove</span>
+            </div> -->
+        </div>
+    </div>
+
+
+    <!-- JS -->
+     <script>
+        let addNoteBtn = document.getElementById('addNoteBtn');
+        let noteInput = document.getElementById('noteInput');
+        let noteslist = document.getElementById('noteslist');
+
+        console.log(noteInput);
+        console.log(noteslist);
+
+        addNoteBtn.addEventListener('click', function(){
+            let noteText = noteInput.value.trim();
+
+            if(noteText){
+                let noteDiv = document.createElement('div');
+
+                noteDiv.className = 'note';
+                noteDiv.innerHTML = `${noteText} <span class="remove"> Remove </span>`;
+
+                noteslist.appendChild(noteDiv);
+                noteInput.value="";
+
+                let removeBtn = noteDiv.querySelector('.remove');
+                removeBtn.addEventListener('click', function(){
+                    noteslist.removeChild(noteDiv);
+                });
+            }
+             
+        });
+     </script>
+</body>
+</html>
